@@ -1,5 +1,6 @@
 ﻿using CadastroProdutos.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace CadastroProdutos.Controllers
@@ -18,6 +19,23 @@ namespace CadastroProdutos.Controllers
         public ActionResult Index()
         {
             return View(categorias);
+        }
+
+        [HttpGet]
+        public ActionResult Adicionar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Adicionar(Categoria categoria)
+        {
+            categoria.CategoriaId = categorias.Select(c => c.CategoriaId).Max() + 1;
+
+            categorias.Add(categoria);
+
+            return RedirectToAction("Index");
         }
     }
 }
