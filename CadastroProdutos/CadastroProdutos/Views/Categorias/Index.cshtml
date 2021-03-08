@@ -25,9 +25,9 @@
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id=item.CategoriaId }) |
-                @Html.ActionLink("Visualizar", "Details", new { id=item.CategoriaId }) |
-                @Html.ActionLink("Excluir", "Delete", new { id=item.CategoriaId })
+                @Html.ActionLink("Editar", "Editar", new { id=item.CategoriaId }) |
+                @Html.ActionLink("Visualizar", "Visualizar", new { id=item.CategoriaId }) |
+                @Html.ActionLink("Excluir", "Excluir", new { id=item.CategoriaId })
             </td>
         </tr>
     }

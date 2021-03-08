@@ -18,7 +18,7 @@ namespace CadastroProdutos.Controllers
 
         public ActionResult Index()
         {
-            return View(categorias);
+            return View(categorias.OrderBy(c => c.Nome));
         }
 
         [HttpGet]
@@ -34,6 +34,42 @@ namespace CadastroProdutos.Controllers
             categoria.CategoriaId = categorias.Select(c => c.CategoriaId).Max() + 1;
 
             categorias.Add(categoria);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Editar(long id)
+        {
+            return View(categorias.Where(c => c.CategoriaId == id).First());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Editar(Categoria categoria)
+        {
+            categorias[categorias.IndexOf(categorias.Where(c => c.CategoriaId == categoria.CategoriaId).First())] = categoria;
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Visualizar(long id)
+        {
+            return View(categorias.Where(c => c.CategoriaId == id).First());
+        }
+
+        [HttpGet]
+        public ActionResult Excluir(long id)
+        {
+            return View(categorias.Where(c => c.CategoriaId == id).First());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Excluir(Categoria categoria)
+        {
+            categorias.Remove(categorias.Where(c => c.CategoriaId == categoria.CategoriaId).First());
 
             return RedirectToAction("Index");
         }

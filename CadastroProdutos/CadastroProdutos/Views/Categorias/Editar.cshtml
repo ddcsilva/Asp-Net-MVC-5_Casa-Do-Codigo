@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Nova Categoria</title>
+    <title>Editar Categoria</title>
 </head>
 <body>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
@@ -13,7 +13,7 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     
     
-    @using (Html.BeginForm()) 
+    @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         
@@ -21,6 +21,8 @@
             <h4>Categoria</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.CategoriaId)
+    
             <div class="form-group">
                 @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
